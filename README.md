@@ -4,5 +4,4 @@
 
 模仿支付宝里的加载图标
 
-
 ![演示图](images/smiling.gif)
