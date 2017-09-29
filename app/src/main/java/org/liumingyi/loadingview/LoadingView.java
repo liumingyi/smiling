@@ -2,9 +2,7 @@ package org.liumingyi.loadingview;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
-import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -162,11 +160,8 @@ public class LoadingView extends View {
   }
 
   private void initAnimator() {
-    /* 第一段动画：Mode = 0，以长条样式滚动一周后，缩短为0*/
-    Keyframe keyframe0 = Keyframe.ofFloat(0, 0);
-    Keyframe keyframe1 = Keyframe.ofFloat(0.5f, 125);
-    PropertyValuesHolder holder = PropertyValuesHolder.ofKeyframe("progress", keyframe0, keyframe1);
-    Animator animator0 = ObjectAnimator.ofPropertyValuesHolder(this, holder);
+    /* 第一段动画：Mode = 0，:)嘴滚动一周后，缩短为0*/
+    Animator animator0 = ObjectAnimator.ofFloat(this, "progress", 125);
     animator0.setInterpolator(new LinearInterpolator());
     animator0.setDuration(DURATION_TIME_0);
     /* animator0 结束时，mode切换到 1*/
@@ -190,15 +185,11 @@ public class LoadingView extends View {
     });
 
     /* 第二段动画：Mode = 1，以点的方式转动半周*/
-    Keyframe keyframe2 = Keyframe.ofFloat(0, 50);
-    Keyframe keyframe3 = Keyframe.ofFloat(1, 100);
-    PropertyValuesHolder holder1 =
-        PropertyValuesHolder.ofKeyframe("progress", keyframe2, keyframe3);
-    Animator animator1 = ObjectAnimator.ofPropertyValuesHolder(this, holder1);
+    Animator animator1 = ObjectAnimator.ofFloat(this, "progress", 50, 100);
     animator1.setInterpolator(new LinearInterpolator());
     animator1.setDuration(DURATION_TIME_1);
 
-    /* 第三段动画：Mode = 1，从点在变为长条样式*/
+    /* 第三段动画：Mode = 1，从点在变成嘴 :)*/
     Animator animator2 = ObjectAnimator.ofFloat(this, "swipeAngle", 180);
     animator2.setInterpolator(new LinearInterpolator());
     animator2.setDuration(DURATION_TIME_2);
